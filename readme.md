@@ -1,0 +1,3 @@
+this browser game is inspired by the web game "Wordle".
+
+the aim of the game is to guess a mystery five-letter word, known as the “wordle” in six tries. After each guess, the color of the tiles will change to reflect how close your guess was to the word. For example, if a tile turns green, that means that letter is in the word and in the correct spot. If a tile turns yellow, it is in the wordle, but not in the correct spot
