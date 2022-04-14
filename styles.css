@@ -148,3 +148,12 @@ main > .keyboard {
 .zxc{
     margin-left: 7px;
 }
+
+.demoinput{
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    outline: none;
+    z-index: 5;
+    margin: auto;
+}

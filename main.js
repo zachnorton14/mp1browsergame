@@ -8,17 +8,11 @@ async function getWordle(){
     return wordle = wordList[x]    
 }
 
+let wordle = getWordle()
+
 console.log(wordle)
 
+// getting the user's input 
 
-
-
-
-
-
-// gets the users first input
-// async function getGuess(){
-//     await window.prompt('Input a 5 letter word as your guess')
-// }
-
-// getGuess()
+let tile1 = document.querySelector('.tile1')
+tile1.addEventListener('keydown')
