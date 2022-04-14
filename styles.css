@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto+Slab:wght@500&family=Source+Sans+Pro:wght@200;400;600&display=swap');
 body {
-    background-color:rgb(20, 20, 22);
+    background-color: #121213;
     margin: 0px;
 }
-#tile{
-    border: 2px solid rgb(20, 20, 22);
-  }
+
 
 h1{
     color: white;
@@ -56,26 +54,36 @@ hr{
     display: flex;
     margin: auto;
     margin-top: 140px;
-    width: 345px;
+    width: 330px;
+    height: 400px;
     
 }
 
 #row{
     display: flex;
-    justify-content: space-evenly;
     flex-direction: row;
+    width: 330px;
+    justify-content: space-evenly;
+    height: 62px;
 }
 
 #tile{
     flex-grow: 1;
-    height: 64px;
-    width: 64px;
-    background-color: rgb(48, 48, 48);
+    height: 58px;
+    width: 58px;
+    background-color: #121213;
     color: white;
     justify-content: center;
+    margin: 3px;
+    border: 2px solid #3a3a3c;
+    display: flex;
+    align-items: center;
 }
 
-p{
+/* whenever the word is inputted by the player change the tile size to 62x62, 
+remove the border, and change the color to #3a3a3c !!!*/
+
+.tiletext{
     font-size: 2em;
     font-family: 'Roboto Slab';
     font-style: normal;
@@ -83,10 +91,60 @@ p{
     src: url(https://fonts.gstatic.com/s/robotoslab/v22/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjovoSmYmRjRdE.woff2) format('woff2');
     unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
     font-weight: 300;
-    margin: 16px;
+    margin: auto;
     text-align: center;
     height: 32px;
     width: 32px;
-    position: relative;
-    bottom: 6px;
+    padding-bottom: 10px;
+}
+
+/* #keyrow, #key {
+    border: 1px solid mediumvioletred;
+} */
+
+#keyrow{
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    max-height: 58px;
+    margin-bottom: 7px;
+}
+
+#key:not(.enter, .delete){
+    flex-direction: row;
+    width: 43px;
+    height: 58px;
+}
+
+#key{
+    background-color: #818384;
+    border-radius: 10%;
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+}
+
+main > .keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 40vh;
+}
+
+.keyboard{
+    margin: auto;
+    max-width: 500px;
+    max-height: 200px;
+    margin-top: 150px;
+}
+
+.keytext{
+    padding: 10px;
+    margin: auto;
+    color: white;
+    font-family: sans-serif;
+}
+
+.zxc{
+    margin-left: 7px;
 }
