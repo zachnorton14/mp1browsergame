@@ -8,10 +8,6 @@ async function getWordle(){
     return wordle = wordList[x]    
 }
 
-let wordle = getWordle()
-
-console.log(wordle)
-
 // changes the tile being typed in based on amount of keys pressed
 
 let currentTile = '.tile1 p';
@@ -35,6 +31,15 @@ function removeFromCounter(){
         console.log(count)
     }
 }
+
+function enterCounter(){
+    if (count %5 === 0){
+        i++
+    } else {
+        console.log('Not enough characters!')
+    }
+    console.log(count)
+}
 // creating the keyboard logic
 
 function createKey(keyclass, character){
@@ -42,6 +47,21 @@ function createKey(keyclass, character){
     key.addEventListener('click', () => { 
         addToCounter()
         document.querySelector(currentTile).textContent = character
+    })
+}
+
+function keyboardEvent(){
+    document.addEventListener('keydown', (e) => {
+        if (`${e.code}`.match(/Key[A-Z]/)){
+            addToCounter()
+            document.querySelector(currentTile).textContent =`${e.key}`.toUpperCase()
+        } else if (`${e.code}` === 'Backspace'){
+            removeFromCounter()
+        } else if (`${e.code}` === 'Enter'){
+            enterCounter()
+        } else {
+            console.log('That key does not exist')
+        }
     })
 }
 
@@ -56,16 +76,12 @@ deleteButton.addEventListener('click', () => {
 
 let enterButton = document.querySelector('.enter')
 enterButton.addEventListener('click', () => {
-    if (count %5 === 0){
-        i++
-    } else {
-        console.log('Not enough characters!')
-    }
-    console.log(count)
+    enterCounter()
 })
 
 // invoking the keyboard functions
 
+keyboardEvent()
 createKey('.a', 'A')
 createKey('.b', 'B')
 createKey('.c', 'C')
@@ -93,3 +109,9 @@ createKey('.x', 'X')
 createKey('.y', 'Y')
 createKey('.z', 'Z')
 
+// changing the color of the tiles based on the "wordle"
+
+async function compareWordle(){
+    let wordle = await getWordle()
+    
+}
