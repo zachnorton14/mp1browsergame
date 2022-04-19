@@ -18,6 +18,7 @@ h1{
     margin: auto;
     position: relative;
     right: 2%;
+    user-select: none;
     
 }
 
@@ -96,6 +97,7 @@ remove the border, and change the color to #3a3a3c !!!*/
     height: 32px;
     width: 32px;
     padding-bottom: 10px;
+    user-select: none;
 }
 
 /* #keyrow, #key {
@@ -143,6 +145,7 @@ main > .keyboard {
     margin: auto;
     color: white;
     font-family: sans-serif;
+    user-select: none;
 }
 
 .zxc{

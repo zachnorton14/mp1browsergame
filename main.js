@@ -14,25 +14,27 @@ console.log(wordle)
 
 // changes the tile being typed in based on amount of keys pressed
 
-let currentTile = '.tile1 p'
-let count = 0
+let currentTile = '.tile1 p';
+let count = 0;
+let i = 0;
+const comparisonTiles = [5, 10, 15, 20, 25, 30];
 
 function addToCounter(){
-    if(count <= 4){
+    if(count < comparisonTiles[i]){
+        currentTile = '.tile' + (count + 1) + ' p'
         count++
-        currentTile = '.tile' + count + ' p'
         console.log(count)
     }
 }
 
 function removeFromCounter(){
-    if(count <= 5) {
-        count --
+    if (count > i * 5){
+        document.querySelector(currentTile).textContent = " "
+        count--
         currentTile = '.tile' + count + ' p'
         console.log(count)
     }
 }
-
 // creating the keyboard logic
 
 function createKey(keyclass, character){
@@ -45,13 +47,24 @@ function createKey(keyclass, character){
 
 // creating the delete button
 
-let deleteButton = document.querySelector('.delete');
+let deleteButton = document.querySelector('.delete')
 deleteButton.addEventListener('click', () => { 
-    document.querySelector(currentTile).textContent = " "
     removeFromCounter()
 })
 
-//invoking the keyboard functions
+// creating the enter button
+
+let enterButton = document.querySelector('.enter')
+enterButton.addEventListener('click', () => {
+    if (count %5 === 0){
+        i++
+    } else {
+        console.log('Not enough characters!')
+    }
+    console.log(count)
+})
+
+// invoking the keyboard functions
 
 createKey('.a', 'A')
 createKey('.b', 'B')
@@ -79,3 +92,4 @@ createKey('.w', 'W')
 createKey('.x', 'X')
 createKey('.y', 'Y')
 createKey('.z', 'Z')
+
