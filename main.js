@@ -12,7 +12,70 @@ let wordle = getWordle()
 
 console.log(wordle)
 
-// getting the user's input 
+// changes the tile being typed in based on amount of keys pressed
 
-let tile1 = document.querySelector('.tile1')
-tile1.addEventListener('keydown')
+let currentTile = '.tile1 p'
+let count = 0
+
+function addToCounter(){
+    if(count <= 4){
+        count++
+        currentTile = '.tile' + count + ' p'
+        console.log(count)
+    }
+}
+
+function removeFromCounter(){
+    if(count <= 5) {
+        count --
+        currentTile = '.tile' + count + ' p'
+        console.log(count)
+    }
+}
+
+// creating the keyboard logic
+
+function createKey(keyclass, character){
+    key = document.querySelector(keyclass)
+    key.addEventListener('click', () => { 
+        addToCounter()
+        document.querySelector(currentTile).textContent = character
+    })
+}
+
+// creating the delete button
+
+let deleteButton = document.querySelector('.delete');
+deleteButton.addEventListener('click', () => { 
+    document.querySelector(currentTile).textContent = " "
+    removeFromCounter()
+})
+
+//invoking the keyboard functions
+
+createKey('.a', 'A')
+createKey('.b', 'B')
+createKey('.c', 'C')
+createKey('.d', 'D')
+createKey('.e', 'E')
+createKey('.f', 'F')
+createKey('.g', 'G')
+createKey('.h', 'H')
+createKey('.i', 'I')
+createKey('.j', 'J')
+createKey('.k', 'K')
+createKey('.l', 'L')
+createKey('.m', 'M')
+createKey('.n', 'N')
+createKey('.o', 'O')
+createKey('.p', 'P')
+createKey('.q', 'Q')
+createKey('.r', 'R')
+createKey('.s', 'S')
+createKey('.t', 'T')
+createKey('.u', 'U')
+createKey('.v', 'V')
+createKey('.w', 'W')
+createKey('.x', 'X')
+createKey('.y', 'Y')
+createKey('.z', 'Z')
