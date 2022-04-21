@@ -1,10 +1,15 @@
-// generates/comprises the 5 letter "wordle"
+
 let wordle;
+let wordList;
 
 window.onload = () => {
     wordle = getWordle()
     console.log(wordle)
+    wordList = getWordList()
+    console.log(wordList)
 }
+
+// generates/comprises the 5 letter "wordle"
 
 async function getWordle(){
     const response = await fetch('/assets/wordle-answers-alphabetical.txt')
@@ -13,6 +18,15 @@ async function getWordle(){
     let x = Math.floor(Math.random() * wordList.length);
     return wordle = wordList[x]    
 }
+
+// pulls the word list from the assets
+
+async function getWordList(){
+    const response = await fetch('/assets/wordle-answers-alphabetical.txt')
+    const parsedWords = await response.text()
+    return wordList = parsedWords.split('\n')
+}
+
 // changes the tile being typed in based on amount of keys pressed
 
 let currentTile = '.tile1 p';
@@ -45,6 +59,7 @@ function enterCounter(){
     }
     console.log(count)
 }
+
 // creating the keyboard logic
 
 function createKey(keyclass, character){
@@ -63,8 +78,7 @@ function keyboardEvent(){
         } else if (`${e.code}` === 'Backspace'){
             removeFromCounter()
         } else if (`${e.code}` === 'Enter'){
-            enterCounter()
-            compareWordle()
+            enterFunction()
         } else {
             console.log('That key does not exist')
         }
@@ -82,8 +96,7 @@ deleteButton.addEventListener('click', () => {
 
 let enterButton = document.querySelector('.enter')
 enterButton.addEventListener('click', () => {
-    enterCounter()
-    compareWordle()
+    enterFunction()
 })
 
 // invoking the keyboard functions
@@ -119,9 +132,10 @@ createKey('.z', 'Z')
 /* gathering the tiles based on the count, when enter is pressed, and changing the 
 color of the tiles based on the "wordle" */
 
+function enterFunction(){
+        
+    // creating a row object that exists only when a whole guess has been inputted
 
-
-function compareWordle(){
     row = {
         tile1: {
             location: document.querySelector('.tile' + (count - 4)),
@@ -145,36 +159,66 @@ function compareWordle(){
         }
     }
 
-    function scanTileText(text, location, tilenum){
-        userGuess = row.tile1.text + row.tile2.text + row.tile3.text + row.tile4.text + row.tile5.text
-        tileLocation = location
-        if (wordle.match(text)){
-            if(wordle[tilenum] === text){
-                tileLocation.style.backgroundColor = '#538d4e'
-                tileLocation.style.borderColor= '#538d4e'
-                document.querySelector('.' + text).style.backgroundColor = '#538d4e'
+    let userGuess = row.tile1.text + row.tile2.text + row.tile3.text + row.tile4.text + row.tile5.text
+
+    if(wordList.indexOf(userGuess) > 0){
+        enterCounter()
+
+        function scanTileText(text, location, tilenum){
+            tileLocation = location
+            if (wordle.match(text)){
+                if(wordle[tilenum] === text){
+                    tileLocation.style.backgroundColor = '#538d4e'
+                    tileLocation.style.borderColor= '#538d4e'
+                    document.querySelector('.' + text).style.backgroundColor = '#538d4e'
+                } else {
+                    tileLocation.style.backgroundColor = '#b59f3b'
+                    tileLocation.style.borderColor = '#b59f3b'
+                    document.querySelector('.' + text).style.backgroundColor = '#b59f3b'
+                }
             } else {
-                tileLocation.style.backgroundColor = '#b59f3b'
-                tileLocation.style.borderColor = '#b59f3b'
-                document.querySelector('.' + text).style.backgroundColor = '#b59f3b'
+                tileLocation.style.backgroundColor = '#3a3a3c'
+                document.querySelector('.' + text).style.backgroundColor = '#3a3a3c'
             }
-        } else {
-            tileLocation.style.backgroundColor = '#3a3a3c'
-            document.querySelector('.' + text).style.backgroundColor = '#3a3a3c'
-        }
-        if (wordle === userGuess){
-            document.querySelector('.h1').textContent = 'You Win'
-        }
-        if (count === 30){
-            if(wordle != userGuess)
-            document.querySelector('.h1').textContent = 'You Lose'
+            if (wordle === userGuess){
+                document.querySelector('.h1').textContent = 'You Win'
+            }
+            if (count === 30){
+                if(wordle != userGuess)
+                document.querySelector('.h1').textContent = 'You Lose'
+            }
+
         }
 
+        scanTileText(row.tile1.text, row.tile1.location, 0)
+        scanTileText(row.tile2.text, row.tile2.location, 1)
+        scanTileText(row.tile3.text, row.tile3.location, 2)
+        scanTileText(row.tile4.text, row.tile4.location, 3)
+        scanTileText(row.tile5.text, row.tile5.location, 4)
+
+        } else {
+            row.tile1.location.style.backgroundColor = '#b53b3b'
+            row.tile1.location.style.borderColor = '#b53b3b'
+            row.tile2.location.style.backgroundColor = '#b53b3b'
+            row.tile2.location.style.borderColor = '#b53b3b'
+            row.tile3.location.style.backgroundColor = '#b53b3b'
+            row.tile3.location.style.borderColor = '#b53b3b'
+            row.tile4.location.style.backgroundColor = '#b53b3b'
+            row.tile4.location.style.borderColor = '#b53b3b'
+            row.tile5.location.style.backgroundColor = '#b53b3b'
+            row.tile5.location.style.borderColor = '#b53b3b'
+            setTimeout(() => {
+                row.tile1.location.style.backgroundColor = '#121213'
+                row.tile1.location.style.borderColor = '#3a3a3c'
+                row.tile2.location.style.backgroundColor = '#121213'
+                row.tile2.location.style.borderColor = '#3a3a3c'
+                row.tile3.location.style.backgroundColor = '#121213'
+                row.tile3.location.style.borderColor = '#3a3a3c'
+                row.tile4.location.style.backgroundColor = '#121213'
+                row.tile4.location.style.borderColor = '#3a3a3c'
+                row.tile5.location.style.backgroundColor = '#121213'
+                row.tile5.location.style.borderColor = '#3a3a3c'
+        }, 50)
     }
 
-    scanTileText(row.tile1.text, row.tile1.location, 0)
-    scanTileText(row.tile2.text, row.tile2.location, 1)
-    scanTileText(row.tile3.text, row.tile3.location, 2)
-    scanTileText(row.tile4.text, row.tile4.location, 3)
-    scanTileText(row.tile5.text, row.tile5.location, 4)
 }
