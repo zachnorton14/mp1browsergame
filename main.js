@@ -182,10 +182,12 @@ function enterFunction(){
             }
             if (wordle === userGuess){
                 document.querySelector('.h1').textContent = 'You Win'
+                count = 31
             }
             if (count === 30){
                 if(wordle != userGuess)
                 document.querySelector('.h1').textContent = 'You Lose'
+                count = 31
             }
 
         }
