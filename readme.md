@@ -10,7 +10,15 @@ This project was completed as a part of NC State's [software development bootcam
 
 ## Images
 
+</br>
 
+![Game default](assets/project-photos/Default.png "Game start")
 
+</br>
 
+![Game in progress](assets/project-photos/In-progress.png "Game in progress")
+
+</br>
+
+![Game over](assets/project-photos/Game-over-win.png "Game over")
 
